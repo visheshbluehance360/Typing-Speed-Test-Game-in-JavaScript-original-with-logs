@@ -13,7 +13,14 @@ let timer,
     timeLeft = maxTime,
     charIndex = mistakes = isTyping = 0;
 
-console.log(timer, maxTime, timeLeft, charIndex, mistakes, isTyping);
+console.log({
+    Timer: timer,
+    MaximumTime: maxTime,
+    TimeLeft: timeLeft,
+    CharacterIndex: charIndex,
+    Mistakes: mistakes,
+    IsTyping: isTyping
+});
 
 loadParagraph();
 inpField.addEventListener("input", initTyping);
@@ -57,7 +64,8 @@ function initTyping() {
 
         console.log(2);
 
-        if (typedChar == null) { console.log('typedChar null');
+        if (typedChar == null) {
+            console.log('typedChar null');
             if (charIndex > 0) {
                 charIndex--;
                 if (characters[charIndex].classList.contains("incorrect")) {
@@ -66,14 +74,17 @@ function initTyping() {
 
                 characters[charIndex].classList.remove("correct", "incorrect");
             }
-        } else { console.log('typedChar not null');
-            if (characters[charIndex].innerText == typedChar) { console.log('correct');
+        } else {
+            console.log('typedChar not null');
+            if (characters[charIndex].innerText == typedChar) {
+                console.log('correct');
                 characters[charIndex].classList.add("correct");
-            } else { console.log('incorrect');
+            } else {
+                console.log('incorrect');
                 mistakes++;
                 characters[charIndex].classList.add("incorrect");
             }
-            
+
             console.log('increasing charIndex...');
 
             charIndex++;
@@ -103,14 +114,17 @@ function initTyping() {
 }
 
 function initTimer() {
-    console.log('initTimer called...');
+    //console.log('initTimer called...');
 
-    if (timeLeft > 0) { console.log('time left');
+    if (timeLeft > 0) {
+        //console.log('time left');
+
         timeLeft--;
         timeTag.innerText = timeLeft;
         let wpm = Math.round(((charIndex - mistakes) / 5) / (maxTime - timeLeft) * 60);
         wpmTag.innerText = wpm;
-    } else { console.log('time left not greater than 0');
+    } else {
+        console.log('time left not greater than 0');
         clearInterval(timer);
     }
 }
